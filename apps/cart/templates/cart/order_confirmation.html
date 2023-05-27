@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h1 class="text-center">Оформление заказа</h1>
+      
+      <h3 class="text-center">Сумма заказа: {{ quantity }}</h3>
+      
+      <form method="POST" action="{% url 'save_order_info' %}">
+        {% csrf_token %}
+        
+        <div class="form-group">
+          <label for="name">Имя:</label>
+          <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="surname">Фамилия:</label>
+          <input type="text" class="form-control" id="surname" name="surname" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        
+        <div class="text-center">
+          <a href="{% url 'place_order' %}" class="btn btn-success">Оформить заказ</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
