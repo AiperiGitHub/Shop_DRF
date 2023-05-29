@@ -70,25 +70,6 @@ class Product(models.Model):
         verbose_name_plural = _('Продукты')
 
 
-class ProductImage(models.Model):
-    image = models.URLField(
-        _('Изображение')
-    )
-    product = models.ForeignKey(
-        Product,
-        verbose_name=_('Продукт'),
-        on_delete=models.CASCADE,
-        related_name='images'
-    )
-
-    def __str__(self):
-        return self.image
-
-    class Meta:
-        verbose_name = _('Изображение')
-        verbose_name_plural = _('Изображения')
-
-
 class Specification(models.Model):
     name = models.CharField(
         _('Название'),
@@ -112,3 +93,21 @@ class Specification(models.Model):
         verbose_name = _('Спецификация')
         verbose_name_plural = _('Спецификации')
 
+
+class ProductImage(models.Model):
+    image = models.URLField(
+        _('Изображение')
+    )
+    product = models.ForeignKey(
+        Product,
+        verbose_name=_('Продукт'),
+        on_delete=models.CASCADE,
+        related_name='images'
+    )
+
+    def __str__(self):
+        return self.image
+
+    class Meta:
+        verbose_name = _('Изображение')
+        verbose_name_plural = _('Изображения')

@@ -10,7 +10,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     serializer_classes = {
         'retrieve': ProductDetailSerializer,
     }
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated, ]
 
     def get_serializer_class(self):
         return self.serializer_classes.get(self.action, self.serializer_class)

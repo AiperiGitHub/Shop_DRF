@@ -1,29 +1,18 @@
 from rest_framework import serializers
-from .models import Product, Specification
+from .models import Product, Specification, ProductImage
 
 
 class ProductImageSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Product
-        fields = (
-            'id',
-            'url',
-            'product',
-            'image',
-        )  # Указываем только поле изображения
+        model = ProductImage
+        fields = '__all__'
 
 
 class SpecificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Specification
-        fields = (
-            'id',
-            'url',
-            'name',
-            'value',
-            'product',
-        )
+        fields = '__all__'
 
 
 class ProductListSerializer(serializers.ModelSerializer):

@@ -53,7 +53,7 @@ api_v1_urlpatterns = [
     path('token/', include(auth_urlpatterns)),
     path('accounts-', include('apps.accounts.urls')),
     path('cart-', include('apps.cart.urls')),# Добавляем URL-адреса из cart.urls
-    path('shops-', include('apps.shops.urls')),
+    path('shops/', include('apps.shops.urls')),
 ]
 
 urlpatterns = [
