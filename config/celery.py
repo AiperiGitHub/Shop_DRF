@@ -14,7 +14,7 @@ app = Celery('config')
 #   should have a `CELERY_` prefix.
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
-# Load task modules from all registered Django apps.
+# Load task modules from all registered Django apps.A
 app.autodiscover_tasks()
 
 # Автоматическое обнаружение и регистрация задач в приложении
@@ -24,13 +24,13 @@ app.autodiscover_tasks()
 
 
 # Определение рассписания для таска add_number
-# app.conf.beat_schedule = {
-#     'add_numbers_task': {
-#         'task': 'shops.tasks.send_order_notification',
-#         'schedule': 30.0, # Выполнение каждые 30 секунд
-#         'args': (), # Аргументы для функции add_numbers
-#     },
-# }
+app.conf.beat_schedule = {
+    'send_email_task': {
+        'task': 'apps.shops.tasks.send_email_task',
+        'schedule': 60.0, # Выполнение каждые 30 секунд
+        'args': (), # Аргументы для функции add_numbers
+    },
+}
 
 
 # @app.task(bind=True, ignore_result=True)

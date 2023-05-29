@@ -27,10 +27,14 @@ from rest_framework_simplejwt.views import (
 
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
+
+
+
+from apps.accounts.urls import router
 from apps.shops.views import RunParser
 
-from django.conf.urls.static import static
 from config import settings
+
 
 auth_urlpatterns = [
     path('', TokenObtainPairView.as_view(), name='token_obtain_pair'),
@@ -48,20 +52,17 @@ api_v1_urlpatterns = [
     path('schema/', include(swagger_urlpatterns)),
     path('token/', include(auth_urlpatterns)),
     path('accounts-', include('apps.accounts.urls')),
-    path('blog-', include('apps.blog.urls')),
+    path('cart-', include('apps.cart.urls')),# Добавляем URL-адреса из cart.urls
+    path('shops-', include('apps.shops.urls')),
 ]
 
 urlpatterns = [
+    path('', include(router.urls)),
     path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
     path('api/v1/', include(api_v1_urlpatterns)),
     path('parser/<str:date>/', RunParser.as_view(), name='run_parser'),
-    path('', include('apps.shops.urls')),
-    path('accounts/', include('apps.accounts.urls')),
-    path('cart/', include('apps.cart.urls')),  # Добавляем URL-адреса из cart.urls
 ]
-
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     urlpatterns += path('__debug__/', include('debug_toolbar.urls')),

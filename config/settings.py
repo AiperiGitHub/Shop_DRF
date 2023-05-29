@@ -143,6 +143,7 @@ STATIC_URL = 'static/'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -196,25 +197,6 @@ CELERY_BROKER_URL = "redis://localhost:6379"
 CELERY_RESULT_BACKEND = "redis://localhost:6379"
 
 
-CELERY_BROKER_URL = 'memory://localhost/'  # URL брокера сообщений типа "memory"
-CELERY_RESULT_BACKEND = 'cache'  # Использование кода для хранения результатов (может быть другим, например, Redis)
-CELERY_CACHE_BACKEND = 'memory'  # Использование кэша типа "memory"
-
-CELERY_TIMEZONE = "Asia/Bishkek"
-CELERY_TASK_TRACK_STARTED = True
-CELERY_TASK_TIME_LIMIT = 30 * 60
-CELERY_RESULT_BACKEND = 'django-db'
-
-# Настройки для Django
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-
-CHANNEL_LAYERS = {
-    "DEFAULT": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer",
-    },
-}
 
 with contextlib.suppress(ImportError):
     from .local_settings import *
@@ -227,3 +209,10 @@ AUTHENTICATION_BACKENDS = (
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Укажите SMTP-сервер, который вы используете
+EMAIL_PORT = 587  # Укажите порт SMTP-сервера
+EMAIL_USE_TLS = True  # Используйте ли TLS для безопасного соединения
+EMAIL_HOST_USER = 'aiperygergert@gmail.com'
+EMAIL_HOST_PASSWORD = 'yzegoxabyonvupwl'

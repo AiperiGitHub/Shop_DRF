@@ -15,5 +15,7 @@ class ProductView(View):
         return render(request, 'shops/product.html', {'product': product})
 
 
-class RunParser:
-    pass
+class RunParser(View):
+    def get(self, request, date):
+        # Код для обработки запроса и запуска парсера
+        return render(request, 'shops/run_parser.html')

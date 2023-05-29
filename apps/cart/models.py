@@ -1,11 +1,11 @@
-from django.contrib.auth.models import User
 from django.db import models
 
 from apps.shops.models import Product
+from django.conf import settings
 
 
 class Cart(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
 class CartItem(models.Model):
@@ -16,7 +16,7 @@ class CartItem(models.Model):
 
 class Order(models.Model):
     user = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
     created_at = models.DateTimeField(
