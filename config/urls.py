@@ -31,7 +31,7 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, Spec
 
 
 from apps.accounts.urls import router
-from apps.shops.views import RunParser
+# from apps.shops.views import RunParser
 
 from config import settings
 
@@ -61,7 +61,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api/v1/', include(api_v1_urlpatterns)),
-    path('parser/<str:date>/', RunParser.as_view(), name='run_parser'),
+    # path('parser/<str:date>/', RunParser.as_view(), name='run_parser'),
 ]
 
 if settings.DEBUG:

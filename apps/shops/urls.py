@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import IndexView, ProductView
+from .views import ProductViewSet
 
 urlpatterns = [
-    path('', IndexView.as_view(), name='index'),
-    path('product/<int:pk>/', ProductView.as_view(), name='product')
+    path('product/', ProductViewSet.as_view({'get': 'list'}), name='product'),
+    path('product/<int:pk>/', ProductViewSet.as_view({'get': 'retrieve'}), name='product-detail'),
+
 ]
