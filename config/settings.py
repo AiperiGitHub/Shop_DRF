@@ -28,7 +28,7 @@ SECRET_KEY = env_config('SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env_config('DEBUG', '')
 
-ALLOWED_HOSTS = env_config('ALLOWED_HOSTS', '').split(',')
+ALLOWED_HOSTS = env_config('ALLOWED_HOSTS').split(',')
 
 
 # Application definition
@@ -47,6 +47,7 @@ THIRD_PARTY_APPS = [
     'rest_framework_simplejwt',
     'mptt',
     'django_celery_results',
+    'corsheaders',
 ]
 
 INSTALLED_APPS = [
@@ -66,6 +67,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -96,10 +99,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env_config('POSTGRES_DB', ''),
-        'USER': env_config('POSTGRES_USER', ''),
-        'PASSWORD': env_config('POSTGRES_PASSWORD', ''),
-        'HOST': env_config('POSTGRES_HOST', ''),
+        'NAME': env_config('POSTGRES_DB'),
+        'USER': env_config('POSTGRES_USER'),
+        'PASSWORD': env_config('POSTGRES_PASSWORD'),
+        'HOST': env_config('POSTGRES_HOST'),
         'PORT': 5432,
     }
 }
@@ -190,6 +193,7 @@ if DEBUG:
 
 MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware'] if DEBUG else []
 INSTALLED_APPS += ['debug_toolbar'] if DEBUG else []
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Celery Configuration Options
 # Celery settings

@@ -32,3 +32,6 @@ class OrderAdmin(admin.ModelAdmin):
     list_display = ('id', 'user')
     search_fields = ('user__username',)
     list_filter = ('user',)
+
+
+# https://stackabuse.com/creating-a-rest-api-with-django-rest-framework/

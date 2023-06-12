@@ -6,9 +6,9 @@ from .models import Product
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
-    serializer_class = ProductListSerializer
+    serializer_class = ProductDetailSerializer
     serializer_classes = {
-        'retrieve': ProductDetailSerializer,
+        'list': ProductListSerializer,
     }
     permission_classes = [permissions.IsAuthenticated, ]
 
